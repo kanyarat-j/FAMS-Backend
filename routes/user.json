@@ -1,0 +1,12 @@
+
+
+{  
+ "email": "ABCD@gmail.com",    
+"firstname": "NewFname",   
+ "lastname": "NewLname",    
+"nickname": "SSSS",   
+ "weight": 50,   
+ "height": 150,    
+"gender": "",   
+ "DOB": "2020-01-05"  
+}
