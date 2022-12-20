@@ -9,14 +9,14 @@ const {
 const User = require("../models/user");
 const UserLogin = require("../models/userLogin");
 
-// collect only middleware user in route user
 
+// collect only middleware user in route user 
 async function registerUser(req, res, next) {
   try {
     const body = req.body;
     const { firstname, lastname, email, password } = body;
 
-    if (email.split("@").length - 1 > 1) {
+    if (email.split("@").length - 1 !== 1) {
       throw new BadRequestError(`Invalid email ${email}`);
     }
 
@@ -174,8 +174,6 @@ async function login(req, res, next) {
     }
 
     // valid password
-    // create token
-
     const loginedUser = await checkUserLogin(email);
     if (!loginedUser) {
       // not login yet
@@ -183,6 +181,7 @@ async function login(req, res, next) {
         email,
       });
     }
+      // create token
     const token = createToken(email);
 
     const output = wrapUpResponseData("login complete", {}, 200, token);

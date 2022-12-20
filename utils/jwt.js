@@ -7,7 +7,7 @@ const SECRET_KEY = process.env.SECRET_KEY
 
 function createToken(data) {
   const token = jwt.sign(
-    { data },
+    {  data },
     SECRET_KEY,
     { expiresIn: process.env.EXPIRE_TOKEN }
   );
