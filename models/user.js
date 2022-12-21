@@ -36,7 +36,7 @@ const UserSchema = new Schema({
     default: "",
   },
   DOB: {
-    type: Date,
+    type: String,
     default: Date.now,
   },
 });
