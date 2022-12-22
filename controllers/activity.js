@@ -6,15 +6,24 @@ const {
 
 const addActivity = (req, res, next) => {
   //เอาแค่ activity ที่เป็นของตัว user
+  const {
+    id,
+    user,
+    activity: type,
+    date,
+    time,
+    sets,
+    calories,
+  } = req.body.user;
   try {
     const activity = Activity({
-      id: id,
-      user: activity.user,
-      activity: activity.type,
-      date: activity.date,
-      time: activity.time,
-      sets: parseInt(activity.sets),
-      calories: parseInt(activity.calories),
+      id,
+      userId: user.id,
+      activity: type,
+      date,
+      time,
+      sets: parseInt(sets),
+      calories: parseInt(calories),
     });
     activity.save();
     res.status(200).json({ message: "added activity successfully" });
@@ -23,24 +32,24 @@ const addActivity = (req, res, next) => {
   }
 };
 
- const updateActivity = async (req, res, next) => {
+const updateActivity = async (req, res, next) => {
   // เช็คว่าเป็นของ user ไหน filter
   //findOne
   //updateOne
   const { id, user, activity, date, time, sets, calories } = req.body;
   try {
-    const activity = await Activity.findOne({ id: req.params.id });
-    if (!activity) return next(new Error("activity not found"));
-  
-    activity.id = id;
-    activity.user = user;
-    activity.activity = activity;
-    activity.date = date;
-    activity.time = time;
-    activity.sets = parseInt(sets);
-    activity.calories = parseInt(calories);
+    const activities = await Activity.findOne({ id: req.params.id });
+    if (!activities) return next(new Error("activity not found"));
 
-    activity.save();
+    activities.id = id;
+    activities.userId = user.id;
+    activities.activity = activity;
+    activities.date = date;
+    activities.time = time;
+    activities.sets = parseInt(sets);
+    activities.calories = parseInt(calories);
+
+    activities.save();
 
     res.status(200).json({ message: "updated activity successfully" });
   } catch (error) {
@@ -50,40 +59,33 @@ const addActivity = (req, res, next) => {
 
 const getActivities = async (req, res, next) => {
   // เช็คว่าเป็นของ user ไหน
-// ดึงมาทั้งหมดจาก DB ของ user id ที่เลือก
+  // ดึงมาทั้งหมดจาก DB ของ user id ที่เลือก
   //find
-  const { id, user, activity, date, time, sets, calories } = req.body;
+  const { user } = req.body;
   try {
     const activities = await Activity.find({ userId: user.id });
     if (!activities) return next(new Error("activity not found"));
-      
+
     res.status(200).json(activities);
   } catch (error) {
     next(error);
   }
 };
 
-const getActivity = (req, res, next) => {
+const getActivity = async (req, res, next) => {
   // เช็คว่าเป็นของ user ไหน
-
+  const id = req.params.id;
   //findOne
-  const activity = Activity({
-    id: id,
-    user: activity.user,
-    activity: activity.type,
-    date: activity.date,
-    time: activity.time,
-    sets: parseInt(activity.sets),
-    calories: parseInt(activity.calories),
-  });
-  activity.save();
+  const activity = await Activity.findOne({ id });
+  res.send(activity);
 };
 
-const removeActivity = (req, res, next) => {
+const removeActivity = async (req, res, next) => {
   // เช็คว่าเป็นของ user ไหน
-
+  const id = req.params.id;
   // removeOne
-  const activity = Activity.deleteOne(req.params.id);
+  const activity = await Activity.deleteOne(req.params.id);
+  res.send({ message: "Successfully Deleted" });
 };
 
 module.exports = {

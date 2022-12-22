@@ -46,7 +46,9 @@ async function connectDB() {
   });
 }
 
-app.put("/activity", async (req, res) => {
+//app.use("/activity", userRouter);
+
+app.use("/activity", async (req, res) => {
   const activity = req.body;
   const id = activity.id;
   await connectDB();
