@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const UserSchema = new Schema({
+  id:{
+    type:String,
+    require:true,
+  },
   email: {
     type: String,
     required: true,
@@ -39,6 +43,7 @@ const UserSchema = new Schema({
     type: String,
     default: Date.now,
   },
+
 });
 
 module.exports = mongoose.model("User", UserSchema);
