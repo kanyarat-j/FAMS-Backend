@@ -2,11 +2,11 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const ActivitySchema= new Schema({
-    id:{
-      type:String,
-      require:true,
+  id:{
+    type:String,
+    require:true,
     },
-activity:{
+ activity:{
     type: String,
     default:Date.now,
     },

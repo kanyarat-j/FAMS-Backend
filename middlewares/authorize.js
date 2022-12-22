@@ -1,6 +1,7 @@
 const { decodeToken } = require('../utils/jwt')
 const { UnauthorizedError, BadRequestError } = require('../middlewares/errors')
 const { getRequestToken, checkUserLogin } = require('../utils/utils')
+const { user } = require('../models/user')
 
 async function verifyToken(req, res, next) {
     try {
@@ -16,6 +17,8 @@ async function verifyToken(req, res, next) {
                 // already logout
                 throw new UnauthorizedError("Please login")
             }
+        const user = {}
+          
 
             next()
         } catch (error) {
