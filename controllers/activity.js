@@ -1,7 +1,7 @@
+const Activity = require('../models/activity')
 const {
-  wrapUpResponseData,
   getRequestToken,
-  checkUserLogin,
+  checkUserLogin
 } = require("../utils/utils");
 
 const addActivity = (req, res, next) => {
@@ -15,17 +15,16 @@ const addActivity = (req, res, next) => {
     sets,
     calories,
   } = req.body.user;
-  try {
-    const activity = Activity({
-      id,
-      userId: user.id,
-      activity: type,
-      date,
-      time,
-      sets: parseInt(sets),
-      calories: parseInt(calories),
+ try {
+    const activity = new Activity({
+      id: req.body.id,
+      userId: req.body.user.id,
+      activity: req.body.activity,
+      date: req.body.date,
+      time: req.body.time,
+      sets: req.body.parseInt(sets),
+      calories: req.body.parseInt(calories),
     });
-    activity.save();
     res.status(200).json({ message: "added activity successfully" });
   } catch (error) {
     next(error);
@@ -73,7 +72,7 @@ const getActivities = async (req, res, next) => {
 };
 
 const getActivity = async (req, res, next) => {
-  // เช็คว่าเป็นของ user ไหน
+ // เช็คว่าเป็นของ user ไหน
   const id = req.params.id;
   //findOne
   const activity = await Activity.findOne({ id });
@@ -95,3 +94,4 @@ module.exports = {
   getActivities,
   removeActivity,
 };
+

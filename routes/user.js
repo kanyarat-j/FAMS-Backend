@@ -12,8 +12,8 @@ router.delete('/logout', verifyToken, logout)
 
 router.post('/activities', addActivity)
 router.put('/activities/:id', updateActivity)
-router.get('/activities/:id',  getActivity)
-router.delete('/activities/:id',  removeActivity)
+router.get('/activities/:id', getActivity)
+router.delete('/activities/:id', removeActivity)
 router.get('/activities', getActivities)
 
 

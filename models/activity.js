@@ -2,13 +2,13 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const ActivitySchema= new Schema({
-  id:{
-    type:String,
-    require:true,
+  _id:{
+    type:String
+    // require:true,
     },
  activity:{
-    type: String,
-    default:Date.now,
+    type: String
+    // default:Date.now,
     },
  time:{
    type:String

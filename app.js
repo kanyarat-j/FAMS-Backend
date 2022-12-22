@@ -36,15 +36,15 @@ app.listen(PORT, () => {
   console.log(`listen on port ${PORT}`);
 });
 
-// khun few part
+// few part
 //Update
 
-async function connectDB() {
-  await mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
-}
+// async function connectDB() {
+//   await mongoose.connect(process.env.MONGODB_URI, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   });
+// }
 
 //app.use("/activity", userRouter);
 

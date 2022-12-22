@@ -1,5 +1,5 @@
-const express = require('express')
-const router = express.Router()
+// const express = require('express')
+// const router = express.Router()
 // const {addActivity,  updateActivity, getActivity, getActivities,removeActivity} = require('../controllers/activity')
 // const { verifyToken } = require('../middlewares/authorize')
 
@@ -10,4 +10,4 @@ const router = express.Router()
 // router.delete('/activities/:id', verifyToken, removeActivity)
 // router.get('/activities', verifyToken, getActivities)
 
-module.exports = router
+// module.exports = router
